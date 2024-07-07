@@ -396,6 +396,7 @@ class Arena(abstract_arena):
                 break
 
             movies_on_page = [self.movie_detail[idx] for idx in id_on_page]
+            movies_on_page_str = ''.join(movies_on_page) 
             avatar_.write_log("=============    Recommendation Page    =============")
             for idx, movie in enumerate(movies_on_page):
                 if(id_on_page[idx] in self.data.valid_user_list[avatar_id]):
@@ -406,7 +407,7 @@ class Arena(abstract_arena):
             avatar_.write_log("")
             
             #@ most important
-            response = avatar_.reaction_to_recommended_items(movies_on_page, current_page)
+            response = avatar_.reaction_to_recommended_items(movies_on_page_str, current_page)
 
             avatar_.write_log("")
             avatar_.write_log("=============    Avatar Response    =============")
