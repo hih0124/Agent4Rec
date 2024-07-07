@@ -387,8 +387,10 @@ class Arena(abstract_arena):
         avatar_.write_log(f"Is simulating avatar {avatar_id}")
         avatar_.exit_flag = False
         page_generator = self.page_generator(avatar_id)
+        current_page = 0
         while not avatar_.exit_flag:
         # for i in range(2):
+            current_page += 1
             id_on_page = next(page_generator, []) # get the next page, a list of item ids
             if(len(id_on_page) == 0):
                 break
@@ -404,7 +406,7 @@ class Arena(abstract_arena):
             avatar_.write_log("")
             
             #@ most important
-            response = avatar_.reaction_to_recommended_items(movies_on_page)
+            response = avatar_.reaction_to_recommended_items(movies_on_page, current_page)
 
             avatar_.write_log("")
             avatar_.write_log("=============    Avatar Response    =============")
